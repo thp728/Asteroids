@@ -1,5 +1,5 @@
 import { canvas, ctx, canvasWidth, canvasHeight } from "./main.js";
- 
+import { ship } from "./main.js";
  
  export class Bullet {
     constructor(angle) {

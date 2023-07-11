@@ -6,7 +6,7 @@ export let canvas;
 export let ctx; // context - used to draw on canvas
 export let canvasWidth = 1400;
 export let canvasHeight = 900;
-let ship;
+export let ship = new Ship();
 let keys = []; // allows multiple key presses at the same time
 let bullets = [];
 let asteroids = [];
@@ -22,18 +22,17 @@ function SetupCanvas() {
     canvas.height = canvasHeight;
     ctx.fillStyle = 'black';
     ctx.fillRect(0,0, canvas.width, canvas.height);
-    ship = new Ship();
 
     for(let i=0; i<8; i++) {
         asteroids.push(new Asteroid());
     }
 
     document.body.addEventListener("keydown", function(e){
-        keys[e.keyCode] = true;
+        keys[e.key] = true;
     });
     document.body.addEventListener("keyup", function(e){
-        keys[e.keyCode] = false;
-        if(e.keyCode === 32) {
+        keys[e.key] = false;
+        if(e.key === " ") {
             bullets.push(new Bullet(ship.angle));
         }
     });
@@ -76,13 +75,13 @@ function DrawLifeShips() {
 
 // Update positions of all shapes and also draw them 
 function Render() {
-    ship.movingForward = (keys[87]); // W key
+    ship.movingForward = (keys["w"]); // W key
     // D key
-    if(keys[68]) {
+    if(keys["d"]) {
         ship.Rotate(1);
     }
     // A key
-    if(keys[65]) {
+    if(keys["a"]) {
         ship.Rotate(-1);
     }
 
