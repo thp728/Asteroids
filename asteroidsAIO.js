@@ -25,11 +25,11 @@ function SetupCanvas() {
     }
 
     document.body.addEventListener("keydown", function(e){
-        keys[e.keyCode] = true;
+        keys[e.key] = true;
     });
     document.body.addEventListener("keyup", function(e){
-        keys[e.keyCode] = false;
-        if(e.keyCode === 32) {
+        keys[e.key] = false;
+        if(e.key === " ") {
             bullets.push(new Bullet(ship.angle));
         }
     });
@@ -215,13 +215,13 @@ function DrawLifeShips() {
 
 // Update positions of all shapes and also draw them 
 function Render() {
-    ship.movingForward = (keys[87]); // W key
+    ship.movingForward = (keys["w"]); // W key
     // D key
-    if(keys[68]) {
+    if(keys["d"]) {
         ship.Rotate(1);
     }
     // A key
-    if(keys[65]) {
+    if(keys["a"]) {
         ship.Rotate(-1);
     }
     ctx.clearRect(0,0, canvasWidth, canvasHeight);
